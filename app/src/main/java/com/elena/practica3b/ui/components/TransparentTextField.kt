@@ -29,7 +29,7 @@ fun TransparentTextField(
     keyboardType: KeyboardType,
     keyboardActions: KeyboardActions,
     imeAction: ImeAction,
-    trailingIcon: @Composable() (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     TextField(

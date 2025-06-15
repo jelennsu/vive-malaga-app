@@ -41,6 +41,13 @@ import androidx.navigation.NavHostController
 import com.elena.practica3b.ui.components.ConfirmActionDialog
 import com.elena.practica3b.ui.theme.Practica3BTheme
 
+/**
+ * Pantalla para editar perfil de usuario, que permite cambiar nombre, teléfono y foto de perfil.
+ * Incluye carga de imagen desde galería, vista previa de la nueva imagen o la actual,
+ * y diálogo de confirmación para eliminar la imagen de perfil.
+ * Gestiona estados mediante ViewModel, mostrando indicadores de carga y mensajes Toast para feedback.
+ */
+
 @Composable
 fun EditProfileScreen(
     viewModel: EditProfileViewModel = hiltViewModel(),

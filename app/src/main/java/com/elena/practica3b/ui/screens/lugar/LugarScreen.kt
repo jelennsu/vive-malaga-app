@@ -41,7 +41,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
 import com.elena.practica3b.ui.theme.Practica3BTheme
 import androidx.compose.ui.text.style.TextAlign
 import androidx.core.net.toUri
@@ -61,12 +60,11 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import com.elena.practica3b.ui.screens.lugar.data.Review
+import com.elena.practica3b.ui.screens.reviews.Review
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -76,11 +74,24 @@ import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.testTag
 import com.elena.practica3b.ui.screens.favoritos.Favorito
 import com.elena.practica3b.ui.screens.favoritos.FavoritosViewModel
 import com.elena.practica3b.ui.screens.historial.HistorialViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
+
+/**
+ * Pantalla que muestra el detalle completo de un lugar, incluyendo:
+ * - Información básica (nombre, imagen, descripción, categoría, localidad).
+ * - Funcionalidad para marcar como favorito.
+ * - Visualización y gestión de reseñas (lectura, creación y eliminación).
+ * - Realización de reservas con selección de fecha, hora y cantidad.
+ * - Guardado automático del lugar en el historial de visitas.
+ *
+ * Gestiona estados mediante ViewModels (LugarViewModel, HistorialViewModel, FavoritosViewModel)
+ * y responde a eventos UI como navegación, envío de reseñas, reservas y favoritos.
+ */
 
 @Composable
 fun LugarScreen(
@@ -241,7 +252,9 @@ fun LugarContent(
                 text = lugar.nombre,
                 style = MaterialTheme.typography.headlineMedium,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f) // <- ocupa todo el espacio entre back y favorito
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag("LugarTitle")// <- ocupa todo el espacio entre back y favorito
             )
 
             IconButton(onClick = { onToggleFavorito(lugar) }) {
@@ -351,7 +364,8 @@ fun LugarContent(
             placeholder = { Text("Escribe aquí tu opinión...") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp),
+                .height(120.dp)
+                .testTag("ReviewInput"),
             maxLines = 5,
             singleLine = false,
             textStyle = MaterialTheme.typography.bodyMedium
@@ -361,7 +375,9 @@ fun LugarContent(
 
         Button(
             onClick = onReviewSend,
-            modifier = Modifier.align(Alignment.End)
+            modifier = Modifier
+                .align(Alignment.End)
+                .testTag("SendReviewButton")
         ) {
             Text("Enviar")
         }

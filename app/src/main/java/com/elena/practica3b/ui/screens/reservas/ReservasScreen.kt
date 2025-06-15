@@ -9,7 +9,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,21 +18,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import java.text.SimpleDateFormat
 import java.util.*
 import com.elena.practica3b.ui.components.ConfirmActionDialog
-import com.elena.practica3b.ui.screens.lugar.data.Reserva
 
-
-// Esta pantalla permite a los usuarios gestionar sus imágenes en la galería.
-// Los usuarios pueden:
-// 1. Subir imágenes desde su dispositivo móvil a Firebase Storage.
-// 2. Visualizar las imágenes almacenadas en Firestore.
-// 3. Eliminar las imágenes que hayan subido previamente (solo si son las propias).
-// Además, se muestra un indicador de carga mientras se realiza cualquier acción de subida o eliminación.
+/**
+ * Composable que muestra la lista de reservas del usuario en forma de tarjetas.
+ * Cada reserva muestra el nombre del lugar, cantidad de plazas y la fecha/hora reservada.
+ *
+ * Permite cancelar una reserva mediante un botón que abre un diálogo de confirmación.
+ * Al confirmar, se notifica al ViewModel para eliminar la reserva de la fuente de datos.
+ *
+ * La lista se presenta en un LazyColumn con separación entre elementos y estilos coherentes con el tema.
+ *
+ * @param viewModel Instancia de ReservasViewModel que provee las reservas y la lógica para cancelar.
+ */
 
 @Composable
 fun ReservasScreen(

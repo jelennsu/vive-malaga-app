@@ -1,7 +1,13 @@
 package com.elena.practica3b.navigation
 
-// Definición de las pantallas de la app con sus rutas de navegación.
-
+/**
+ * Definición tipada y segura de las rutas de navegación de la app mediante un sealed class.
+ * Cada pantalla representa una ruta única, con soporte para rutas parametrizadas y métodos
+ * auxiliares para construir rutas dinámicas, mejorando la mantenibilidad y seguridad de la navegación.
+ *
+ * La función `getBaseRoute` extrae la ruta base ignorando parámetros para facilitar la gestión
+ * de visibilidad y lógica de navegación según la pantalla activa.
+ */
 sealed class AppScreens(val route: String) {
     data object SplashScreen : AppScreens("splash_screen")
     data object LoginScreen : AppScreens("login_screen")
@@ -11,7 +17,7 @@ sealed class AppScreens(val route: String) {
     data object ReservasScreen : AppScreens("reservas_screen")
     data object FavoritosScreen : AppScreens("favoritos_screen")
     data object LugarScreen : AppScreens("lugar_screen/{id}") {
-        val baseRoute = "lugar_screen"
+        const val baseRoute = "lugar_screen"
         fun createRoute(id: String) = "$baseRoute/$id"
     }
     data object CategoriaScreen: AppScreens("categoria_screen/{categoria_nombre}") {

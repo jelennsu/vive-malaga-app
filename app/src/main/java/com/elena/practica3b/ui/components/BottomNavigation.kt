@@ -25,15 +25,22 @@ import com.elena.practica3b.R
 import com.elena.practica3b.navigation.AppScreens
 import com.elena.practica3b.ui.theme.Practica3BTheme
 
-// Componente BottomNavigation:
-// Este componente crea una barra de navegación en la parte inferior de la pantalla.
-// Utiliza `NavigationBar` de Material3 para proporcionar una barra de navegación con tres elementos:
-// 1. Un ícono de "Inicio" que navega a la pantalla de inicio (HomeScreen).
-// 2. Un ícono de "Reseñas" que navega a la pantalla de reseñas (ReviewsScreen).
-// 3. Un ícono de "Galería" que navega a la pantalla de galería (GaleriaScreen).
-// Cada ícono está acompañado de un texto que indica el nombre de la sección correspondiente.
-// La barra de navegación está diseñada para resaltar el ítem seleccionado, con la opción de cambiar
-// de pantalla al hacer clic en un ícono.
+/**
+ * Componente BottomNavigation
+ *
+ * Implementa una barra de navegación inferior utilizando `NavigationBar` de Material3,
+ * que permite al usuario desplazarse entre las principales secciones de la aplicación.
+ *
+ * Elementos de navegación incluidos:
+ * 1. Inicio (HomeScreen) — ícono y texto representativos que llevan a la pantalla principal.
+ * 2. Reservas (ReservasScreen) — acceso rápido a la gestión de reservas del usuario.
+ * 3. Favoritos (FavoritosScreen) — acceso a la lista de lugares marcados como favoritos.
+ *
+ * Características:
+ * - Visualización clara del ítem activo mediante resaltado.
+ * - Navegación eficiente entre pantallas al pulsar cada ícono.
+ * - Diseño coherente con las directrices de Material Design 3 para navegación inferior.
+ */
 
 @Composable
 fun BottomNavigation(navController: NavController, modifier: Modifier = Modifier) {

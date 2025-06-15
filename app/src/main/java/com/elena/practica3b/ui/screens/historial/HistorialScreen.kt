@@ -41,6 +41,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
+/*
+ * Pantalla y contenido para mostrar el historial de lugares visitados por el usuario,
+ * con opción de navegar a detalles y borrar todo el historial tras confirmación.
+ * Muestra un mensaje si el historial está vacío.
+ */
 
 @Composable
 fun HistorialScreen(

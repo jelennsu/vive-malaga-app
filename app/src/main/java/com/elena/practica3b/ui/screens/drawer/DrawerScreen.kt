@@ -51,6 +51,8 @@ import com.elena.practica3b.ui.components.EventDialog
 import com.elena.practica3b.ui.theme.Practica3BTheme
 import com.elena.practica3b.R
 
+// Componente de menú lateral con gestión de estado, diálogos de confirmación para logout
+// y eliminación de cuenta, navegación y visualización dinámica de perfil.
 @Composable
 fun DrawerScreen(
     drawerViewModel: DrawerViewModel = hiltViewModel(),

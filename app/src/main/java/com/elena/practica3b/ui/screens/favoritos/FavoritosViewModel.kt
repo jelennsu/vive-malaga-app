@@ -14,6 +14,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+/*
+ * ViewModel que gestiona la lista de lugares favoritos del usuario autenticado.
+ * Proporciona un StateFlow con los favoritos y funciones para añadir y eliminar favoritos
+ * sincronizados en tiempo real con Firestore.
+ */
+
 @HiltViewModel
 class FavoritosViewModel @Inject constructor(
     firestore: FirebaseFirestore,
@@ -65,13 +71,4 @@ class FavoritosViewModel @Inject constructor(
         }
     }
 
-    suspend fun isFavorito(lugarId: String): Boolean {
-        val currentUser = currentUserId ?: return false
-        val snapshot = favoritosCollection
-            .whereEqualTo("usuarioId", currentUser)
-            .whereEqualTo("lugarId", lugarId)
-            .get()
-            .await()
-        return !snapshot.isEmpty
-    }
 }

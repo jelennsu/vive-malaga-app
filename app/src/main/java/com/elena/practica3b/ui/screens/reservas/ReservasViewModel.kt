@@ -6,16 +6,19 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.elena.practica3b.ui.screens.lugar.data.Reserva
 import com.google.firebase.auth.FirebaseAuth
 
-// ViewModel de la pantalla de la galería.
-// Gestiona la lógica de negocio relacionada con las imágenes, incluyendo:
-// 1. La subida de imágenes a Firebase Storage mediante `addImageToStorage`.
-// 2. La inserción de las URL de las imágenes en Firestore con `addImageToDatabase`.
-// 3. La obtención de las imágenes almacenadas en Firestore con `getImageFromDatabase`.
-// 4. La eliminación de imágenes tanto de Firestore como de Firebase Storage a través de `deleteImageFromFirestoreAndStorage`.
-// Además, mantiene el estado de las respuestas (éxito, carga, error) para cada operación y un indicador de carga durante la eliminación de imágenes.
+/**
+ * ViewModel responsable de gestionar las reservas del usuario actual.
+ *
+ * Funcionalidades principales:
+ * - Cargar las reservas asociadas al usuario autenticado desde Firestore.
+ * - Obtener el nombre del lugar asociado a cada reserva para mostrar en la UI.
+ * - Permitir cancelar reservas eliminándolas de Firestore y actualizando la lista local.
+ *
+ * Utiliza inyección de dependencias con Hilt para FirebaseFirestore y FirebaseAuth.
+ * Mantiene el estado de las reservas en una lista observable para Jetpack Compose.
+ */
 
 @HiltViewModel
 class ReservasViewModel @Inject constructor(

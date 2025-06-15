@@ -3,10 +3,8 @@ package com.elena.practica3b.ui.screens.lugar
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elena.practica3b.data.repository.HistorialRepository
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
-import com.elena.practica3b.ui.screens.lugar.data.Reserva
-import com.elena.practica3b.ui.screens.lugar.data.Review
+import com.elena.practica3b.ui.screens.reservas.Reserva
+import com.elena.practica3b.ui.screens.reviews.Review
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -19,6 +17,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+/**
+ * ViewModel encargado de gestionar toda la lógica relacionada con la pantalla LugarScreen:
+ * - Carga y mantiene el estado del lugar seleccionado.
+ * - Obtiene y gestiona la lista de reseñas del lugar.
+ * - Añade y elimina reseñas.
+ * - Realiza reservas vinculadas al lugar y al usuario.
+ * - Maneja estados de carga y errores para reflejarlos en la UI.
+ *
+ * Expone un StateFlow con el estado actual para facilitar la observación reactiva desde la UI.
+ */
 @HiltViewModel
 class LugarViewModel @Inject constructor(
     private val firestore: FirebaseFirestore,
@@ -100,71 +108,54 @@ class LugarViewModel @Inject constructor(
             onComplete(false)
             return
         }
+
         currentUser?.let { user ->
             _isSendingReview.value = true
-
             val userDocRef = firestore.collection("users").document(user.uid)
 
             userDocRef.get()
                 .addOnSuccessListener { document ->
-                    val userName = if (document.exists()) {
-                        document.getString("name") ?: "Anónimo"
-                    } else {
-                        "Anónimo"
-                    }
-
-                    val documentRef = firestore.collection("reviews").document()
-
-                    val review = Review(
-                        id = documentRef.id,
-                        lugarId = lugarId,
-                        comentario = textReview,
-                        usuarioId = user.uid,
-                        usuarioNombre = userName,
-                        fecha = System.currentTimeMillis()
-                    )
-
-                    documentRef.set(review)
-                        .addOnSuccessListener {
-                            Log.d("ReviewViewModel", "Reseña agregada con ID: ${documentRef.id}")
-                            loadReviews(lugarId)
-                            _isSendingReview.value = false
-                            onComplete(true)
-                        }
-                        .addOnFailureListener { exception ->
-                            Log.e("ReviewViewModel", "Error al agregar reseña: $exception")
-                            _isSendingReview.value = false
-                            onComplete(false)
-                        }
+                    val userName = document.getString("name") ?: "Anónimo"
+                    guardarReview(textReview, lugarId, user.uid, userName, onComplete)
                 }
                 .addOnFailureListener { exception ->
                     Log.e("ReviewViewModel", "Error al obtener nombre de usuario: $exception")
-                    val documentRef = firestore.collection("reviews").document()
-
-                    val review = Review(
-                        id = documentRef.id,
-                        lugarId = lugarId,
-                        comentario = textReview,
-                        usuarioId = user.uid,
-                        usuarioNombre = "Anónimo",
-                        fecha = System.currentTimeMillis()
-                    )
-
-                    documentRef.set(review)
-                        .addOnSuccessListener {
-                            Log.d("ReviewViewModel", "Reseña agregada con ID: ${documentRef.id}")
-                            loadReviews(lugarId)
-                            _isSendingReview.value = false
-                            onComplete(true)
-                        }
-                        .addOnFailureListener { e ->
-                            Log.e("ReviewViewModel", "Error al agregar reseña tras fallo en usuario: $e")
-                            _isSendingReview.value = false
-                            onComplete(false)
-                        }
+                    guardarReview(textReview, lugarId, user.uid, "Anónimo", onComplete)
                 }
         }
     }
+
+    private fun guardarReview(
+        textReview: String,
+        lugarId: String,
+        userId: String,
+        userName: String,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val documentRef = firestore.collection("reviews").document()
+        val review = Review(
+            id = documentRef.id,
+            lugarId = lugarId,
+            comentario = textReview,
+            usuarioId = userId,
+            usuarioNombre = userName,
+            fecha = System.currentTimeMillis()
+        )
+
+        documentRef.set(review)
+            .addOnSuccessListener {
+                Log.d("ReviewViewModel", "Reseña agregada con ID: ${documentRef.id}")
+                loadReviews(lugarId)
+                _isSendingReview.value = false
+                onComplete(true)
+            }
+            .addOnFailureListener { e ->
+                Log.e("ReviewViewModel", "Error al agregar reseña: $e")
+                _isSendingReview.value = false
+                onComplete(false)
+            }
+    }
+
 
 
     fun loadReviews(lugarId: String) {

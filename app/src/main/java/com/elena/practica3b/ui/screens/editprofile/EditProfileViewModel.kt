@@ -18,6 +18,13 @@ import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import javax.inject.Inject
 
+/*
+ * ViewModel para EditProfileScreen que gestiona la carga,
+ * actualización y eliminación de datos del perfil de usuario,
+ * incluyendo sincronización con Firebase Firestore y Storage,
+ * y comunicación de eventos UI mediante un Channel.
+ */
+
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
     private val firestore: FirebaseFirestore,

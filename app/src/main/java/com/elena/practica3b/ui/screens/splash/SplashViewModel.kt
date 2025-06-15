@@ -7,6 +7,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import androidx.compose.runtime.State
 
+/**
+ * ViewModel para la pantalla Splash que gestiona el estado de autenticación del usuario.
+ *
+ * Utiliza FirebaseAuth para comprobar si hay un usuario actualmente autenticado.
+ * Expone un estado observable (`SplashState`) que indica si el usuario ha iniciado sesión.
+ *
+ * Funcionalidad principal:
+ * - `checkUserSession()`: verifica la sesión actual y actualiza el estado en consecuencia.
+ *
+ * La pantalla Splash puede observar este estado para decidir la navegación inicial.
+ */
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val auth: FirebaseAuth

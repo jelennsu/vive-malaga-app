@@ -17,7 +17,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,19 +25,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
-import com.elena.practica3b.R
-import com.elena.practica3b.data.lugaresData
-import com.elena.practica3b.navigation.AppScreens
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
-import com.elena.practica3b.ui.theme.Practica3BTheme
-import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
+import com.elena.practica3b.R
+import com.elena.practica3b.ui.screens.lugar.Lugar
+import com.elena.practica3b.ui.theme.Practica3BTheme
 
 
-// Muestra un ícono y texto centrado, usado en una fila horizontal.
+/*
+ * Composable para mostrar un elemento visual con imagen circular y texto debajo,
+ * que responde a clics mediante un callback.
+ */
 @Composable
 fun LugaresElement(
     @DrawableRes drawable: Int,
@@ -67,6 +64,12 @@ fun LugaresElement(
     }
 }
 
+/*
+ * Fila horizontal de elementos tipo "Lugar" local,
+ * que al clicar busca el lugar correspondiente en Firebase
+ * y navega a la pantalla de detalle usando NavController.
+ * Registra errores si no encuentra el lugar o si el id es inválido.
+ */
 @Composable
 fun LugaresRow(
     navController: NavController,
@@ -113,19 +116,6 @@ fun LugaresRow(
         }
     }
 }
-
-@Composable
-fun LugaresRowWithViewModel(
-    navController: NavController,
-    homeViewModel: HomeViewModel = hiltViewModel()
-) {
-    val lugaresFirebase by homeViewModel.lugares.collectAsState()
-    LugaresRow(navController = navController, lugaresFirebase = lugaresFirebase)
-}
-
-
-
-
 
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)

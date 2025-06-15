@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 
+// Diálogo reutilizable para confirmar o cancelar una acción crítica del usuario.
 @Composable
 fun ConfirmActionDialog(
     title: String,

@@ -24,8 +24,18 @@ import com.elena.practica3b.navigation.AppScreens
 import com.elena.practica3b.ui.theme.Practica3BTheme
 import kotlinx.coroutines.delay
 
-// Pantalla de bienvenida que muestra una imagen y el texto "Vive Málaga"
-// por 3 segundos antes de navegar a la pantalla de login.
+/**
+ * Pantalla de bienvenida (Splash Screen) que muestra el logo y el texto "Vive Málaga".
+ *
+ * Muestra la imagen y texto durante 3 segundos antes de verificar la sesión del usuario
+ * mediante el ViewModel. Según el estado de autenticación, navega a la pantalla Home o Login.
+ *
+ * Uso:
+ * - `LaunchedEffect` para el delay inicial.
+ * - Observa el estado de sesión para realizar la navegación.
+ *
+ * @param navController Controlador de navegación para gestionar las rutas.
+ */
 
 @Composable
 fun SplashScreen(navController: NavHostController) {

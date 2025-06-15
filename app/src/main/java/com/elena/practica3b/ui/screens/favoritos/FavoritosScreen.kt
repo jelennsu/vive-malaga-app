@@ -9,22 +9,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 
+/*
+ * Pantalla de favoritos que muestra la lista de lugares guardados como favoritos
+ * por el usuario. Si no hay favoritos, muestra un mensaje indicándolo.
+ * Cada favorito se muestra en una tarjeta con imagen y nombre,
+ * y permite navegar al detalle del lugar al hacer clic.
+ */
 
 @Composable
 fun FavoritosScreen(

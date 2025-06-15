@@ -2,7 +2,6 @@ package com.elena.practica3b.ui.screens.categoria
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,12 +21,12 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.elena.practica3b.navigation.AppScreens
 import com.elena.practica3b.ui.screens.home.HomeViewModel
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
+import com.elena.practica3b.ui.screens.lugar.Lugar
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.*
-import java.text.Normalizer
 
+// Pantalla que muestra una lista filtrada de lugares con tarjetas clicables para detalle.
 @Composable
 fun CategoriaScreen(
     titulo: String,
@@ -36,7 +35,6 @@ fun CategoriaScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val lugares by viewModel.lugares.collectAsState()
-
     val lugaresFiltrados = lugares.filter(filtro)
 
     Column(modifier = Modifier.padding(16.dp)) {

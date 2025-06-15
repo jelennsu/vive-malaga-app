@@ -41,6 +41,30 @@ Dirigida tanto a residentes como a turistas, Vive Málaga promueve la sostenibil
 4. Añade tu archivo `google-services.json` en la carpeta `app/` para integrar Firebase.
 5. Ejecuta la app desde Android Studio.
 
+## 📦 Releases
+
+El proyecto sigue un versionado semántico (MAJOR.MINOR.PATCH):
+
+- **MAJOR**: cambios incompatibles o grandes novedades.
+- **MINOR**: nuevas funcionalidades compatibles.
+- **PATCH**: corrección de errores y mejoras menores.
+
+### Versiones principales
+
+- `v1.0.0` (2025-06-15): Primera versión estable con funcionalidades básicas:
+    - Búsqueda inteligente
+    - Exploración y detalle de lugares
+    - Sistema de reservas
+    - Valoraciones y favoritos
+    - Perfil de usuario
+
+### Descarga
+
+Las versiones compiladas (APK) se publican en la sección [Releases](https://github.com/jelennsu/vive-malaga-app/releases) del repositorio GitHub.
+
+Para compilar el proyecto desde el código fuente, sigue las instrucciones de la sección **Instalación y ejecución**.
+
+
 ## 🧑‍💻 Autora
 
 Elena Suárez Serrano – Estudiante de Desarrollo de Aplicaciones Multiplataforma.  

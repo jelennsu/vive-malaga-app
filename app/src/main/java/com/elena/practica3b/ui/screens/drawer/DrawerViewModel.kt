@@ -15,12 +15,18 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+/**
+ * ViewModel encargado de gestionar el estado y la lógica del Drawer,
+ * incluyendo la carga del usuario actual, cierre de sesión y eliminación segura de cuenta,
+ * con limpieza de datos locales y remotos para garantizar la integridad de la app.
+ */
+
 @HiltViewModel
 class DrawerViewModel @Inject constructor(
     private val auth: FirebaseAuth,
     private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage,
-    private val historialRepository: HistorialRepository // Inyecta el repo aquí
+    private val historialRepository: HistorialRepository
 ) : ViewModel() {
 
     private val _state = mutableStateOf(DrawerState())

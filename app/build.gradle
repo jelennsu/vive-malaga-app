@@ -56,6 +56,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:3.0.2'
     implementation 'com.google.firebase:firebase-inappmessaging-ktx:21.0.1'
     implementation "androidx.room:room-runtime:2.6.1"
+    implementation 'androidx.test.ext:junit-ktx:1.2.1'
     kapt "androidx.room:room-compiler:2.6.1"
     implementation "androidx.room:room-ktx:2.6.1"
     kapt "com.google.dagger:hilt-compiler:2.49"
@@ -103,7 +104,7 @@ dependencies {
 
     // Dependencias de prueba
     testImplementation "junit:junit:4.13.2"
-    androidTestImplementation "androidx.test.ext:junit:1.2.1"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.6.1"
 
     // Firebase (usando BOM)
@@ -127,6 +128,22 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:19.2.0"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
+    testImplementation "app.cash.turbine:turbine:0.12.1"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:1.8.21"
+    testImplementation "io.mockk:mockk:1.13.10"
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+
+    debugImplementation "androidx.compose.ui:ui-tooling"
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
+    implementation "org.jetbrains.kotlin:kotlin-test:2.0.0"
+    androidTestImplementation "com.google.truth:truth:1.1.5"
+
+    androidTestImplementation "com.google.dagger:hilt-android-testing:2.49"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:2.49"
+    
 }
 

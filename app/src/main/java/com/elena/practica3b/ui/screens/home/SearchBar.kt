@@ -24,9 +24,15 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
+import com.elena.practica3b.ui.screens.lugar.Lugar
 import com.elena.practica3b.ui.theme.Practica3BTheme
 
+/*
+ * Barra de búsqueda con sugerencias dinámicas para lugares, categorías y localidades.
+ * Muestra sugerencias filtradas en tiempo real según el texto introducido.
+ * Al seleccionar una sugerencia, invoca el callback correspondiente y oculta las sugerencias.
+ * Soporta envío con el botón IME y controla el foco del teclado.
+ */
 
 @Composable
 fun SearchBar(

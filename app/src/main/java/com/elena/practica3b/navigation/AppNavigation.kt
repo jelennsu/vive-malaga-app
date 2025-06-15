@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,7 +23,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.elena.practica3b.R
 import com.elena.practica3b.ui.components.AppTopBar
@@ -46,13 +44,14 @@ import com.elena.practica3b.ui.screens.registration.RegistrationScreen
 import com.elena.practica3b.ui.screens.reservas.ReservasScreen
 import com.elena.practica3b.ui.screens.reservas.ReservasViewModel
 import com.elena.practica3b.ui.screens.splash.SplashScreen
-import com.elena.practica3b.ui.theme.Practica3BTheme
-import kotlinx.coroutines.launch
 import com.elena.practica3b.utils.sinDiacriticos
+import kotlinx.coroutines.launch
 
 
-// Configura la navegación de la aplicación, definiendo las rutas
-// y las animaciones de transición entre pantallas.
+/**
+ * Configuración principal de la navegación en modo retrato,
+ * incluyendo lógica para mostrar barra superior, barra inferior y drawer.
+ */
 @ExperimentalAnimationApi
 @Composable
 fun AppNavigationPortrait(navController: NavHostController) {
@@ -131,7 +130,10 @@ fun AppNavigationPortrait(navController: NavHostController) {
 }
 
 
-
+/**
+ * Configuración de navegación para modo apaisado,
+ * con drawer y NavigationRail en lugar de barra inferior.
+ */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppNavigationLandscape(navController: NavHostController) {
@@ -212,6 +214,7 @@ fun AppNavigationLandscape(navController: NavHostController) {
 }
 
 
+/** Implementación específica de cada ruta con su composable correspondiente **/
 @ExperimentalAnimationApi
 fun NavGraphBuilder.addLogin(
     navController: NavHostController

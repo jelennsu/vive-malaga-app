@@ -2,7 +2,7 @@ package com.elena.practica3b.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
+import com.elena.practica3b.ui.screens.lugar.Lugar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +13,23 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import com.elena.practica3b.utils.sinDiacriticos
 import javax.inject.Inject
+
+/*
+ * ViewModel para la pantalla Home que gestiona:
+ * - La carga inicial de todos los lugares desde Firestore.
+ * - El estado de carga y errores.
+ * - El filtro reactivo de lugares según:
+ *    • Texto de búsqueda (buscando en nombre, categoría y localidad).
+ *    • Categoría seleccionada.
+ *    • Localidad seleccionada.
+ * - La generación dinámica de sugerencias que incluye:
+ *    • Categorías coincidentes con el texto.
+ *    • Localidades únicas coincidentes.
+ *    • Lugares cuyo nombre o localidad coinciden.
+ *
+ * Usa combinaciones de StateFlows para ofrecer una UI reactiva,
+ * aplicando normalización para ignorar mayúsculas y diacríticos en la búsqueda.
+ */
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -59,7 +76,7 @@ class HomeViewModel @Inject constructor(
         lugares.filter { lugar ->
             val nombre = lugar.nombre.lowercase().sinDiacriticos()
             val cat = lugar.categoria.lowercase().sinDiacriticos()
-            val loc = lugar.localidad.orEmpty().lowercase().sinDiacriticos()
+            val loc = lugar.localidad.lowercase().sinDiacriticos()
 
             (texto.isBlank() || nombre.contains(texto) || cat.contains(texto) || loc.contains(texto)) &&
                     (categoria == null || lugar.categoria.equals(categoria, ignoreCase = true)) &&

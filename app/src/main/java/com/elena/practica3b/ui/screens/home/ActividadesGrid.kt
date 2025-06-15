@@ -26,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.elena.practica3b.R
-import com.elena.practica3b.data.actividadesData
 import com.elena.practica3b.ui.theme.Practica3BTheme
 
 // Componente ActividadesCard:

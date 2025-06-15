@@ -5,18 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,11 +26,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.elena.practica3b.R
 import com.elena.practica3b.navigation.AppScreens
-import com.elena.practica3b.ui.screens.lugar.data.Lugar
+import com.elena.practica3b.ui.screens.lugar.Lugar
 import com.elena.practica3b.ui.theme.Practica3BTheme
 
 // HomeScreen: Componente principal de la pantalla de inicio que incluye una barra de búsqueda
-// y dos secciones: Lugares y Actividades.
+// y dos secciones: Lugares y Categorías.
 // HomeSection: Componente reutilizable para mostrar secciones con título y contenido dinámico.
 
 @Composable
