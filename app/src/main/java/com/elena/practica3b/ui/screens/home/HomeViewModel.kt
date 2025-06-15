@@ -120,7 +120,7 @@ class HomeViewModel @Inject constructor(
             .map { SugerenciaBusqueda.PorCategoria(it) }
 
         // Localidades únicas coincidentes
-        sugerencias += lugares.mapNotNull { it.localidad }
+        sugerencias += lugares.map { it.localidad }
             .distinctBy { it.lowercase().sinDiacriticos() }
             .filter { it.lowercase().sinDiacriticos().contains(texto) }
             .map { SugerenciaBusqueda.PorLocalidad(it) }
@@ -128,7 +128,7 @@ class HomeViewModel @Inject constructor(
         // Lugares por nombre o localidad
         sugerencias += lugares.filter {
             it.nombre.lowercase().sinDiacriticos().contains(texto) ||
-                    it.localidad.orEmpty().lowercase().sinDiacriticos().contains(texto)
+                    it.localidad.lowercase().sinDiacriticos().contains(texto)
         }.map { SugerenciaBusqueda.PorLugar(it) }
 
         return sugerencias
