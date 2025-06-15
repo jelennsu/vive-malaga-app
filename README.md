@@ -72,8 +72,9 @@ Proyecto final de ciclo formativo.
 
 ## 📄 Licencia
 
-Este proyecto se basa parcialmente en el código del [Basic Layouts in Compose Codelab](https://developer.android.com/codelabs/jetpack-compose-layouts?hl=es-419#3),  
-proporcionado por The Android Open Source Project bajo licencia Apache 2.0.
+El proyecto Vive Málaga se distribuye bajo licencia **MIT** para su código original.  
+Parte del código, basado en el [Basic Layouts in Compose Codelab](https://developer.android.com/codelabs/jetpack-compose-layouts?hl=es-419#3), 
+está bajo licencia **Apache 2.0** y se mantiene conforme a sus términos.
 
 Copyright 2022 The Android Open Source Project
 
